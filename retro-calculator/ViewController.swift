@@ -94,11 +94,13 @@ class ViewController: UIViewController {
         // User selected 2 operators in a row
         if case Operation.Empty = currentOperation {
             // This is the first time an operation has been pressed
-            if runningNumber != "" {
-                leftValStr = runningNumber
-                runningNumber = ""
-                currentOperation = op
+            if runningNumber == "" {
+                runningNumber = "0"
             }
+            
+            leftValStr = runningNumber
+            runningNumber = ""
+            currentOperation = op
         } else {
             // Run some math
             if runningNumber != "" {
@@ -124,6 +126,8 @@ class ViewController: UIViewController {
                 
                 leftValStr = "\(result)"
                 outputLbl.text = leftValStr
+            } else if leftValStr != "" {
+                runningNumber = leftValStr
             }
             
             currentOperation = op
